@@ -7,6 +7,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,7 +24,7 @@ public class Question {
 	@Column(name="QUESTION_TEXT")
 	private String questionText;
 	
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "ANSWER_OPTIONS", joinColumns=@JoinColumn(name="QUESTION_ID"))
 	private Set<Option> options = new HashSet<Option>(); 
 	

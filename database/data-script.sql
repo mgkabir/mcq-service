@@ -1,0 +1,43 @@
+INSERT QUESTIONS VALUES(1, 'What is the Capital of Bangladesh ?');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(1,1,'Dhaka',1,'Explanation : Dhaka is Capital of Bangladesh');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(2,1,'Chittagong',0,'Explanation : Dhaka is Capital of Bangladesh');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(3,1,'Barisal',0,'Explanation : Dhaka is Capital of Bangladesh');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(4,1,'Sylhet',0,'Explanation : Dhaka is Capital of Bangladesh');
+
+
+INSERT QUESTIONS VALUES(2, 'What is the Capital of Australia ?');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(5,2,'Brisbane',0,'Not Correct.');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(6,2,'Sydney',0,'Not Correct !');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(7,2,'Canberra',1,'Correct : Canberra is the correct answer.');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(8,2,'Dubbo',0,'Explanation : Canberra is the correct answer.');
+
+INSERT QUESTIONS VALUES(3, 'What is the largest Ocean ?');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(9,3,'North Ocean',0,'Not Correct.');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(10,3,'Indian Ocean',0,'Not Correct !');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(11,3,'Atlantic',0,'Not Correct !');
+
+INSERT INTO ANSWER_OPTIONS (`OPTION_ID`,`QUESTION_ID`,`OPTION_TEXT`,`IS_CORRECT`,`REASON`)
+VALUES(12,3,'Pacific',1,'Explanation : Canberra is the correct answer.');
+
