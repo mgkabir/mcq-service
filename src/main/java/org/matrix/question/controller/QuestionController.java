@@ -23,7 +23,6 @@ public class QuestionController {
 	@RequestMapping(value = "/{Id}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Question getQuestionById(@PathVariable("Id") Long Id) {
-		System.out.println("Controller.getQuestionById() : Id" + Id);
 		Question retrivedQ = questionService.getQuestion(Id.longValue());
 		return retrivedQ;
 	}
@@ -31,7 +30,6 @@ public class QuestionController {
 	@RequestMapping(value = "/{questionId}/option/{optionId}", method = RequestMethod.POST)
 	public ResponseEntity<Option> answerQuestion(@PathVariable("questionId") Long questionId,
 			@PathVariable("optionId") Long optionId) {
-		System.out.println("QuestionController : answerQuestion() : Q_Id " + questionId + " Opt_Id " + optionId);
 		String isCorrect = "NO";
 		Question retrivedQ = questionService.getQuestion(questionId.longValue());
 		Option selectedOption = null;
