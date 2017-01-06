@@ -1,13 +1,18 @@
 package org.matrix.question.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Option {
 	
+	@Column(name="OPTION_ID")
 	private Long optionId;
+	@Column(name="OPTION_TEXT")
 	private String optionText;
+	@Column(name="IS_CORRECT")
 	private boolean isCorrect;
+	@Column(name="REASON")
 	private String reason; // Reason why this option is correct / incorrect.
 	
 	public Long getOptionId() {
