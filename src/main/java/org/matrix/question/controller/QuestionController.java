@@ -4,6 +4,9 @@ import org.matrix.question.model.Option;
 import org.matrix.question.model.Question;
 import org.matrix.question.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,9 +29,23 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/{questionId}/option/{optionId}", method = RequestMethod.POST)
-	public Option answerQuestion(@PathVariable("questionId") Long questionId, @PathVariable("optionId") Long optionId) {
-		System.out.println("QuestionController : answerQuestion() : Q_Id "+questionId+" Opt_Id "+optionId);
+	public ResponseEntity<Option> answerQuestion(@PathVariable("questionId") Long questionId,
+			@PathVariable("optionId") Long optionId) {
+		System.out.println("QuestionController : answerQuestion() : Q_Id " + questionId + " Opt_Id " + optionId);
+		String isCorrect = "NO";
+		Question retrivedQ = questionService.getQuestion(questionId.longValue());
 		Option selectedOption = null;
-		return selectedOption;
+
+		for (Option anOption : retrivedQ.getOptions()) {
+			if (optionId == anOption.getOptionId()) {
+				isCorrect = anOption.isCorrect() ? "YES" : "NO";
+				selectedOption = anOption;
+			}
+		}
+
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.set("isCorrect", isCorrect);
+
+		return new ResponseEntity<Option>(selectedOption, responseHeaders, HttpStatus.OK);
 	}
 }
