@@ -1,5 +1,6 @@
 package org.matrix.question.controller;
 
+import org.matrix.question.model.Answer;
 import org.matrix.question.model.Option;
 import org.matrix.question.model.Question;
 import org.matrix.question.service.QuestionService;
@@ -30,22 +31,30 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/{questionId}/option/{optionId}", method = RequestMethod.POST)
-	public ResponseEntity<Option> answerQuestion(@PathVariable("questionId") Long questionId,
+	public ResponseEntity<Answer> answerQuestion(@PathVariable("questionId") Long questionId,
 			@PathVariable("optionId") Long optionId) {
-		String isCorrect = "NO";
+		
+		Answer answer = new Answer();
 		Question retrivedQ = questionService.getQuestion(questionId.longValue());
-		Option selectedOption = null;
+		answer.setCurrentQuestion(retrivedQ);
+		answer.setNextQuestion(this.nextQuestion(retrivedQ));
 
 		for (Option anOption : retrivedQ.getOptions()) {
 			if (optionId == anOption.getOptionId()) {
-				isCorrect = anOption.isCorrect() ? "YES" : "NO";
-				selectedOption = anOption;
+				answer.setCorrect(anOption.isCorrect());
 			}
 		}
+		System.out.println("QuestionController.answerQuestion() => Correct ? "+answer.isCorrect());
+		return new ResponseEntity<Answer>(answer, HttpStatus.OK);
+	}
 
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.set("isCorrect", isCorrect);
-
-		return new ResponseEntity<Option>(selectedOption, responseHeaders, HttpStatus.OK);
+	/* Implementation will change*/
+	private Question nextQuestion(Question currentQuestion){
+		
+		long nextQuestionId = 1;
+		if(currentQuestion.getQuestionId() < 3){
+			nextQuestionId += currentQuestion.getQuestionId().longValue();
+		}
+		return questionService.getQuestion(nextQuestionId);
 	}
 }
