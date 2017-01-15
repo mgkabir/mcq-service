@@ -12,8 +12,6 @@ public class Option {
 	private String optionText;
 	@Column(name="IS_CORRECT")
 	private boolean isCorrect;
-	@Column(name="REASON")
-	private String reason; // Reason why this option is correct / incorrect.
 	
 	public Long getOptionId() {
 		return optionId;
@@ -33,13 +31,6 @@ public class Option {
 	public void setCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
-	public String getReason() {
-		return reason;
-	}
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-	
 	
 
 }

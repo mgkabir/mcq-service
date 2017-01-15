@@ -21,8 +21,13 @@ public class Question {
 	@GeneratedValue
 	@Column(name="QUESTION_ID")
 	private Long questionId;
+	
 	@Column(name="QUESTION_TEXT")
 	private String questionText;
+	
+	@Column(name="ANSWER_TEXT")
+	private String answerText; // Explanation of Answer. Why a specific option is correct or not.
+	
 	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "ANSWER_OPTIONS", joinColumns=@JoinColumn(name="QUESTION_ID"))
@@ -47,5 +52,11 @@ public class Question {
 	public void setQuestionText(String questionText) {
 		this.questionText = questionText;
 	}
-
+	public String getAnswerText() {
+		return answerText;
+	}
+	public void setAnswerText(String answerText) {
+		this.answerText = answerText;
+	}
+	
 }

@@ -1,26 +1,31 @@
 package org.matrix.question.model;
 
 public class Answer {
-	
-	private Question currentQuestion ;
-	private Question nextQuestion;
+
+	private Question currentQuestion;
+	private long nextQuestionId;
 	private boolean isCorrect;
-	
+
 	public Question getCurrentQuestion() {
 		return currentQuestion;
 	}
+
 	public void setCurrentQuestion(Question currentQuestion) {
 		this.currentQuestion = currentQuestion;
 	}
-	public Question getNextQuestion() {
-		return nextQuestion;
+
+	public long getNextQuestionId() {
+		return nextQuestionId;
 	}
-	public void setNextQuestion(Question nextQuestion) {
-		this.nextQuestion = nextQuestion;
+
+	public void setNextQuestionId(long nextQuestionId) {
+		this.nextQuestionId = nextQuestionId;
 	}
+
 	public boolean isCorrect() {
 		return isCorrect;
 	}
+
 	public void setCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}

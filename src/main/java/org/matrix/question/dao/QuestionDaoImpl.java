@@ -20,7 +20,7 @@ public class QuestionDaoImpl implements QuestionDao {
 	public Question getQuestion(long Id) {
 
 		Question aQuestion = (Question)this.getSession().get(Question.class, Id);
-		System.out.println("QuestionDAO.getQuestion() :"+aQuestion.getQuestionText());
+		//System.out.println("QuestionDAO.getQuestion() :"+aQuestion.getQuestionText());
 		return aQuestion;
 	}
 
