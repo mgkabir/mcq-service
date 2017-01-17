@@ -5,4 +5,6 @@ import org.matrix.question.model.Question;
 public interface QuestionDao {
 
 	public Question getQuestion(long Id);
+	
+	public void addQuestion(Question aQuestion);
 }

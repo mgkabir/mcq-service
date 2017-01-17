@@ -16,7 +16,13 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public Question getQuestion(long Id) {
-		return questionDao.getQuestion(Id);
+		return this.questionDao.getQuestion(Id);
+	}
+
+	@Override
+	public void addQuestion(Question aQuestion) {
+		this.questionDao.addQuestion(aQuestion);
+
 	}
 
 }

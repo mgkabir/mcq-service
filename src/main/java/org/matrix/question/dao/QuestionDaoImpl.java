@@ -19,9 +19,14 @@ public class QuestionDaoImpl implements QuestionDao {
 	@Override
 	public Question getQuestion(long Id) {
 
-		Question aQuestion = (Question)this.getSession().get(Question.class, Id);
-		//System.out.println("QuestionDAO.getQuestion() :"+aQuestion.getQuestionText());
-		return aQuestion;
+		return (Question) this.getSession().get(Question.class, Id);
+
 	}
 
+	@Override
+	public void addQuestion(Question aQuestion) {
+
+		this.getSession().save(aQuestion);
+
+	}
 }
