@@ -25,11 +25,12 @@ public class QuestionManageController {
 		System.out.println("QuestionManageController.addQuestion() : " + aQuestion.getQuestionText());
 
 		for (Option anOption : aQuestion.getOptions()) {
-			System.out.println("QuestionManageController.addQuestion() : " + anOption.getOptionText());
+			System.out.println("QuestionManageController.addQuestion() : option => " + anOption.getOptionText()
+					+ " Correct ? => " + anOption.isCorrect());
 		}
 
 		questionService.addQuestion(aQuestion);
 
-		return new ResponseEntity<Question>(aQuestion,HttpStatus.CREATED);
+		return new ResponseEntity<Question>(aQuestion, HttpStatus.CREATED);
 	}
 }
