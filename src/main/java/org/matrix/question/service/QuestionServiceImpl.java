@@ -1,5 +1,7 @@
 package org.matrix.question.service;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.matrix.question.dao.QuestionDao;
@@ -23,6 +25,11 @@ public class QuestionServiceImpl implements QuestionService {
 	public void addQuestion(Question aQuestion) {
 		this.questionDao.addQuestion(aQuestion);
 
+	}
+
+	@Override
+	public Collection<Question> getAllQuestions() {
+		return this.questionDao.getAllQuestions();
 	}
 
 }

@@ -1,5 +1,7 @@
 package org.matrix.question.dao;
 
+import java.util.Collection;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.matrix.question.model.Question;
@@ -29,4 +31,12 @@ public class QuestionDaoImpl implements QuestionDao {
 		this.getSession().save(aQuestion);
 
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<Question> getAllQuestions() {
+		return this.getSession().createQuery("from Question").list();
+
+	}
+
 }

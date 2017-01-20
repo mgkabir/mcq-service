@@ -1,5 +1,7 @@
 package org.matrix.question.controller;
 
+import java.util.Collection;
+
 import org.matrix.question.model.Option;
 import org.matrix.question.model.Question;
 import org.matrix.question.service.QuestionService;
@@ -14,13 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-
 public class QuestionManageController {
 
 	@Autowired
 	private QuestionService questionService;
 
-	@RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
+	@RequestMapping(value = "/questions", method = RequestMethod.POST)
 	public ResponseEntity<Question> addQuestion(@RequestBody Question aQuestion) {
 		System.out.println("QuestionManageController.addQuestion() : " + aQuestion.getQuestionText());
 
@@ -32,5 +33,13 @@ public class QuestionManageController {
 		questionService.addQuestion(aQuestion);
 
 		return new ResponseEntity<Question>(aQuestion, HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/questions", method = RequestMethod.GET)
+	public Collection<Question> getAllQuestions() {
+		Collection<Question> questions = this.questionService.getAllQuestions();
+		System.out.println("QuestionManageController.getAllQuestions() : size = "+questions.size());
+		return questions;
+
 	}
 }
