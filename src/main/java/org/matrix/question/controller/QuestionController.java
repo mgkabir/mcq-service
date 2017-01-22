@@ -53,7 +53,7 @@ public class QuestionController {
 	private long getNextQuestionId(long currentQuestionId) {
 
 		long nextQuestionId = 1;
-		if (currentQuestionId < 5) {
+		if (currentQuestionId < 11) {
 			nextQuestionId += currentQuestionId;
 		}
 		return nextQuestionId;
