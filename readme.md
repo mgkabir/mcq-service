@@ -1,5 +1,5 @@
 ## MCQ REST service 
-Developed with Spring Boot, Spring MVC, Hibernate, MySQL
+Developed with Spring Boot 1.3.5, [Spring 4.2.x, Hibernate 4.3.x] MySQL
 
 ### Configurations
 
@@ -7,7 +7,7 @@ Configurations are in `application.properties` file
 
 #### Prerequisites
 
-- Java 7
+- Java 8
 - Maven 3
 
 #### From terminal
