@@ -11,4 +11,6 @@ public interface QuestionDao {
 	public void addQuestion(Question aQuestion);
 
 	public Collection<Question> getAllQuestions();
+
+	public void updateQuestion(Question aQuestion);
 }

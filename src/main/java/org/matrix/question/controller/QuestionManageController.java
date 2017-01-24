@@ -37,6 +37,21 @@ public class QuestionManageController {
 		return new ResponseEntity<Question>(aQuestion, HttpStatus.CREATED);
 	}
 
+	@RequestMapping(value = "/questions", method = RequestMethod.PUT)
+	public ResponseEntity<Question> updateQuestion(@RequestBody Question aQuestion) {
+		System.out.println("QuestionManageController.updateQuestion() : " + aQuestion.getQuestionText());
+
+		for (Option anOption : aQuestion.getOptions()) {
+			System.out.println("QuestionManageController.updateQuestion() : option => " + anOption.getOptionText()
+					+ " Correct ? => " + anOption.isCorrect());
+		}
+
+		questionService.updateQuestion(aQuestion);
+
+		return new ResponseEntity<Question>(aQuestion, HttpStatus.CREATED);
+	}
+
+	
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
 	public Collection<Question> getAllQuestions() {
 		Collection<Question> questions = this.questionService.getAllQuestions();

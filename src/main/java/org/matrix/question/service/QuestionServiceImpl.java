@@ -32,4 +32,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return this.questionDao.getAllQuestions();
 	}
 
+	@Override
+	public void updateQuestion(Question aQuestion) {
+		this.questionDao.updateQuestion(aQuestion);
+
+	}
+
 }

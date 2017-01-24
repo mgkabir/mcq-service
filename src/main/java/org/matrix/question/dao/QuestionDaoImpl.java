@@ -39,4 +39,9 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	}
 
+	@Override
+	public void updateQuestion(Question aQuestion) {
+		this.getSession().update(aQuestion);
+	}
+
 }

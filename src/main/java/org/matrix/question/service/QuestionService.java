@@ -10,6 +10,8 @@ public interface QuestionService {
 
 	public void addQuestion(Question aQuestion);
 
+	public void updateQuestion(Question aQuestion);
+
 	public Collection<Question> getAllQuestions();
 
 }
