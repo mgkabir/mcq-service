@@ -40,11 +40,12 @@ public class QuestionController {
 		Question retrivedQ = questionService.getQuestion(questionId.longValue());
 		answer.setCurrentQuestion(retrivedQ);
 
-		for (Option anOption : retrivedQ.getOptions()) {
-			if (optionId == anOption.getOptionId()) {
-				answer.setCorrect(anOption.isCorrect());
+		retrivedQ.getOptions().forEach(opt -> {
+			if (optionId == opt.getOptionId()) {
+				answer.setCorrect(opt.isCorrect());
 			}
-		}
+		});
+
 		return new ResponseEntity<Answer>(answer, HttpStatus.OK);
 	}
 
