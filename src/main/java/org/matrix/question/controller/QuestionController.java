@@ -4,6 +4,7 @@ import org.matrix.question.model.Answer;
 import org.matrix.question.model.Option;
 import org.matrix.question.model.Question;
 import org.matrix.question.service.QuestionService;
+import org.matrix.utils.QuestionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,10 @@ public class QuestionController {
 	@Autowired
 	private QuestionService questionService;
 
-	@RequestMapping(value = "/{Id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public Question getQuestionById(@PathVariable("Id") Long Id) {
-		Question retrivedQ = questionService.getQuestion(Id.longValue());
+	public Question getRandomQuestion() {
+		Question retrivedQ = QuestionUtils.getRandomQuestion(questionService);
 		System.out.println("QuestionController.getQuestionById() : " + retrivedQ.getQuestionId() + " - "
 				+ retrivedQ.getQuestionText());
 		return retrivedQ;
@@ -38,24 +39,13 @@ public class QuestionController {
 		Answer answer = new Answer();
 		Question retrivedQ = questionService.getQuestion(questionId.longValue());
 		answer.setCurrentQuestion(retrivedQ);
-		answer.setNextQuestionId(getNextQuestionId(retrivedQ.getQuestionId()));
 
 		for (Option anOption : retrivedQ.getOptions()) {
 			if (optionId == anOption.getOptionId()) {
 				answer.setCorrect(anOption.isCorrect());
 			}
 		}
-		System.out.println("QuestionController.answerQuestion() => Correct ? " + answer.isCorrect());
 		return new ResponseEntity<Answer>(answer, HttpStatus.OK);
 	}
 
-	/* Implementation will change */
-	private long getNextQuestionId(long currentQuestionId) {
-
-		long nextQuestionId = 1;
-		if (currentQuestionId < 11) {
-			nextQuestionId += currentQuestionId;
-		}
-		return nextQuestionId;
-	}
 }

@@ -3,7 +3,7 @@ package org.matrix.question.model;
 public class Answer {
 
 	private Question currentQuestion;
-	private long nextQuestionId;
+	private long nextQuestionId; // can be removed ?
 	private boolean isCorrect;
 
 	public Question getCurrentQuestion() {

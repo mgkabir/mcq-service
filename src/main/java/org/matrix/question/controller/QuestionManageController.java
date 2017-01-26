@@ -51,7 +51,6 @@ public class QuestionManageController {
 		return new ResponseEntity<Question>(aQuestion, HttpStatus.CREATED);
 	}
 
-	
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
 	public Collection<Question> getAllQuestions() {
 		Collection<Question> questions = this.questionService.getAllQuestions();
@@ -68,4 +67,5 @@ public class QuestionManageController {
 				+ retrivedQ.getQuestionText());
 		return retrivedQ;
 	}
+
 }
