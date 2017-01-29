@@ -38,4 +38,9 @@ public class QuestionServiceImpl implements QuestionService {
 
 	}
 
+	@Override
+	public long getQuestionCount() {
+		return this.questionDao.getQuestionCount();
+	}
+
 }

@@ -44,4 +44,9 @@ public class QuestionDaoImpl implements QuestionDao {
 		this.getSession().update(aQuestion);
 	}
 
+	@Override
+	public long getQuestionCount() {
+		return ((Long) getSession().createQuery("select count(*) from Question").uniqueResult()).longValue();
+	}
+
 }

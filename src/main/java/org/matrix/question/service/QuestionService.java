@@ -13,5 +13,7 @@ public interface QuestionService {
 	public void updateQuestion(Question aQuestion);
 
 	public Collection<Question> getAllQuestions();
+	
+	public long getQuestionCount();
 
 }

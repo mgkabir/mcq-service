@@ -13,4 +13,6 @@ public interface QuestionDao {
 	public Collection<Question> getAllQuestions();
 
 	public void updateQuestion(Question aQuestion);
+
+	public long getQuestionCount();
 }
