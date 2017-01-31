@@ -1,5 +1,7 @@
 package org.matrix.user.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,54 +11,42 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="users")
+@Table(name = "USERS")
 public class User {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
-  
-  @NotNull
-  @Size(min = 3, max = 80)
-  private String email;
-  
-  @NotNull
-  @Size(min = 2, max = 80)
-  private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="USER_ID")
+	private Long userId;
 
-  public User() { }
+	@Embedded
+	private Name name;
 
-  public User(long id) { 
-    this.id = id;
-  }
+	@Embedded
+	private Login login;
 
-  public User(String email, String name) {
-    this.email = email;
-    this.name = name;
-  }
+	public Long getUserId() {
+		return userId;
+	}
 
-  public long getId() {
-    return id;
-  }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-  public void setId(long value) {
-    this.id = value;
-  }
+	public Name getName() {
+		return name;
+	}
 
-  public String getEmail() {
-    return email;
-  }
-  
-  public void setEmail(String value) {
-    this.email = value;
-  }
-  
-  public String getName() {
-    return name;
-  }
+	public void setName(Name name) {
+		this.name = name;
+	}
 
-  public void setName(String value) {
-    this.name = value;
-  }
-  
-} // class User
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+
+}

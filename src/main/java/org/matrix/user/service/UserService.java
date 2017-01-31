@@ -1,9 +1,9 @@
-package org.matrix.user.dao;
+package org.matrix.user.service;
 
 import org.matrix.user.model.User;
 
-public interface UserDao {
-	
+public interface UserService {
+
 	public User getUser(String userName, String password);
 
 }
