@@ -1,5 +1,7 @@
 package org.matrix.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.matrix.user.model.Login;
 import org.matrix.user.model.User;
 import org.matrix.user.service.UserService;
@@ -19,17 +21,27 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/checklogin", method = RequestMethod.POST)
-	public ResponseEntity<Boolean> checkLogin(@RequestBody Login login) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> doLogin(@RequestBody Login login, HttpServletRequest request) {
 
 		Boolean exists = false;
 		User retrivedUSer = this.userService.getUser(login.getUserName(), login.getPassword());
 
-		if (null != retrivedUSer)
+		if (null != retrivedUSer) {
 			exists = true;
-		/* If user exists put that into session */
-		System.out.println("UserController.checkLogin() : UserExists ? " + exists);
+			/* put this user into session for accessing later from session */
+			request.getSession().setAttribute("loggedInUser", retrivedUSer);
+		}
+
+		System.out.println("UserController.doLogin() : UserExists ? " + exists);
 		return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public ResponseEntity<Boolean> doLogout(HttpServletRequest request) {
+		
+		request.getSession().removeAttribute("loggedInUser");
+		System.out.println("UserController.doLogout() : called ");
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
 }
