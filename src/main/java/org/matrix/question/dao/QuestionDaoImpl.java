@@ -2,6 +2,8 @@ package org.matrix.question.dao;
 
 import java.util.Collection;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.matrix.question.model.Question;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Transactional
 public class QuestionDaoImpl implements QuestionDao {
 
 	@Autowired
