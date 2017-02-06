@@ -1,9 +1,10 @@
 package org.matrix.user.dao;
 
-import org.matrix.user.model.User;
+import org.matrix.user.model.AppUser;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserDao {
+public interface UserDao extends UserDetailsService {
 	
-	public User getUser(String userName, String password);
+	public AppUser getUser(String userName, String password);
 
 }

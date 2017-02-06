@@ -2,8 +2,8 @@ package org.matrix.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.matrix.user.model.AppUser;
 import org.matrix.user.model.Login;
-import org.matrix.user.model.User;
 import org.matrix.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class UserController {
 	public ResponseEntity<Boolean> doLogin(@RequestBody Login login, HttpServletRequest request) {
 
 		Boolean exists = false;
-		User retrivedUSer = this.userService.getUser(login.getUserName(), login.getPassword());
+		AppUser retrivedUSer = this.userService.getUser(login.getUserName(), login.getPassword());
 
 		if (null != retrivedUSer) {
 			exists = true;
@@ -39,7 +39,7 @@ public class UserController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> doLogout(HttpServletRequest request) {
-		
+
 		request.getSession().removeAttribute("loggedInUser");
 		System.out.println("UserController.doLogout() : called ");
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
