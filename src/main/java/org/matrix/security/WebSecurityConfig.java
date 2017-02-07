@@ -24,6 +24,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// disable caching
 		http.headers().cacheControl();
 
+		http.cors();
+		
 		http.csrf().disable() // disable csrf for our requests.
 				.authorizeRequests().antMatchers("/").permitAll().antMatchers(HttpMethod.POST, "/login").permitAll()
 				.anyRequest().authenticated().and()

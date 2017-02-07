@@ -23,7 +23,8 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<Boolean> doLogin(@RequestBody Login login, HttpServletRequest request) {
-
+		
+		System.out.println("UserController.doLogin() : username ? " + login.getUserName());
 		Boolean exists = false;
 		AppUser retrivedUSer = this.userService.getUser(login.getUserName(), login.getPassword());
 
@@ -33,7 +34,7 @@ public class UserController {
 			request.getSession().setAttribute("loggedInUser", retrivedUSer);
 		}
 
-		System.out.println("UserController.doLogin() : UserExists ? " + exists);
+		
 		return new ResponseEntity<Boolean>(exists, HttpStatus.OK);
 	}
 
