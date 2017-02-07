@@ -30,7 +30,7 @@ public class UserController {
 
 		if (null != retrivedUSer) {
 			exists = true;
-			/* put this user into session for accessing later from session */
+			// put this user into session for accessing later from session 
 			request.getSession().setAttribute("loggedInUser", retrivedUSer);
 		}
 
@@ -45,4 +45,5 @@ public class UserController {
 		System.out.println("UserController.doLogout() : called ");
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
+
 }

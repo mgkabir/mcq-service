@@ -36,6 +36,9 @@ public class QuestionController {
 	public ResponseEntity<Answer> answerQuestion(@PathVariable("questionId") Long questionId,
 			@PathVariable("optionId") Long optionId) {
 
+		System.out.println("QuestionController.answerQuestion() QID - OptID: " + questionId + " - "
+				+ optionId);
+		
 		Answer answer = new Answer();
 		Question retrivedQ = questionService.getQuestion(questionId.longValue());
 		answer.setCurrentQuestion(retrivedQ);

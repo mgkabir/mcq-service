@@ -24,21 +24,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// disable caching
 		http.headers().cacheControl();
 
-		http.cors();
-		
-		http.csrf().disable() // disable csrf for our requests.
+		http.cors().and().csrf().disable() // disable csrf for our requests.
 				.authorizeRequests().antMatchers("/").permitAll().antMatchers(HttpMethod.POST, "/login").permitAll()
 				.anyRequest().authenticated().and()
 				// We filter the api/login requests
 				.addFilterBefore(new JWTLoginFilter("/login", authenticationManager()),
 						UsernamePasswordAuthenticationFilter.class)
-				// And filter other requests to check the presence of JWT in header
+				// And filter other requests to check the presence of JWT in
+				// header
 				.addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
 		auth.userDetailsService(userService);
 
 	}
