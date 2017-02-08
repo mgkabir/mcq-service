@@ -17,22 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/question")
+
 public class QuestionController {
 
 	@Autowired
 	private QuestionService questionService;
 
-	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value="/practice-question", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Question getRandomQuestion() {
 		Question retrivedQ = QuestionUtils.getRandomQuestion(questionService);
-		System.out.println("QuestionController.getQuestionById() : " + retrivedQ.getQuestionId() + " - "
+		System.out.println("QuestionController.getRandomQuestion() : " + retrivedQ.getQuestionId() + " - "
 				+ retrivedQ.getQuestionText());
 		return retrivedQ;
 	}
 
-	@RequestMapping(value = "/{questionId}/option/{optionId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/practice-question/{questionId}/option/{optionId}", method = RequestMethod.GET)
 	public ResponseEntity<Answer> answerQuestion(@PathVariable("questionId") Long questionId,
 			@PathVariable("optionId") Long optionId) {
 
