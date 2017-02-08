@@ -13,27 +13,26 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class TokenAuthenticationService {
 
-	//private long EXPIRATIONTIME = 1000 * 60 * 60 * 24 * 2; // 2 days
-	private long EXPIRATIONTIME = 1000 * 60 * 2; // 2 mins
+	// private long EXPIRATIONTIME = 1000 * 60 * 60 * 24 * 2; // 2 days
+	private long EXPIRATIONTIME = 1000 * 60 * 30; // 30 mins
 	private String secret = "sshuush";
 	private String tokenPrefix = "Bearer";
 	private String headerString = "Authorization";
 
-	public void addAuthentication(HttpServletResponse response, String username) throws IOException{
+	public void addAuthentication(HttpServletResponse response, String username) throws IOException {
 		// We generate a token now.
 		String JWT = Jwts.builder().setSubject(username)
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 
 		response.setHeader(headerString, tokenPrefix + " " + JWT);
-		
-		StringBuffer JSON_JWT = new StringBuffer();
-		JSON_JWT.append("{\"token\"").append(":").append("\"").append(JWT).append("\"}");
+
 		response.setContentType("application/json");
-		response.getWriter().write(JSON_JWT.toString());
-		
+		// writes directly to body
+		response.getWriter().write(this.JSONize(JWT));
+
 		System.out.println("TokenAuthenticationService.addAuthentication(): JWT => " + JWT);
-		
+
 	}
 
 	public Authentication getAuthentication(HttpServletRequest request) {
@@ -48,5 +47,15 @@ public class TokenAuthenticationService {
 			}
 		}
 		return null;
+	}
+	/* wraps the token inside a JSON object like
+	 * 
+	 * {"token": "generated_token"}
+	 * 
+	 */
+	private String JSONize(String JWT) {
+		StringBuffer JSON_JWT = new StringBuffer();
+		JSON_JWT.append("{\"token\"").append(":").append("\"").append(JWT).append("\"}");
+		return JSON_JWT.toString();
 	}
 }
