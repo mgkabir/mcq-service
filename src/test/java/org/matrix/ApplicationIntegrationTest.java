@@ -1,5 +1,7 @@
 package org.matrix;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Test;
@@ -25,6 +27,12 @@ public class ApplicationIntegrationTest {
 		/* Both the statements below do the same thing */
 		Assertions.assertThat(response.getBody().getOptions().size()).isEqualTo(4);
 		Assert.assertEquals(4, response.getBody().getOptions().size());
+	}
+
+	@Test
+	public void testwithAssertJ() {
+		ResponseEntity<Question> response = this.restTemplate.getForEntity("/practice-question", Question.class);
+		assertThat(response.getBody().getOptions().size()).isEqualTo(4);
 	}
 
 }

@@ -9,12 +9,12 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <name>mcq service</name>
-  <description>Develop MCQ service using MySQL in Spring Boot web application with Hibernate</description>
+  <description>MCQ service using Spring Boot with Java, Hibernate and MariaDB</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.1.RELEASE</version>
+    <version>1.5.6.RELEASE</version>
     <relativePath />
   </parent>
 
