@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class DatabaseConfig {
+public class AppConfig {
 
 	@Value("${db.driver}")
 	private String DB_DRIVER;
@@ -71,4 +71,4 @@ public class DatabaseConfig {
 		return transactionManager;
 	}
 
-} // class DatabaseConfig
+} 

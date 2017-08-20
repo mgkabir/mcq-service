@@ -35,7 +35,6 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public void updateQuestion(Question aQuestion) {
 		this.questionDao.updateQuestion(aQuestion);
-
 	}
 
 	@Override

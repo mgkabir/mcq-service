@@ -14,4 +14,5 @@ public class ExamService {
 	public List<Exam> getAllExam(){
 		return examRepository.findAll();
 	}
+
 }
