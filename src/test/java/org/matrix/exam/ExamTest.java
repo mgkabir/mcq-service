@@ -19,6 +19,7 @@ public class ExamTest {
 	@Test
 	public void getAllExam() {
 		System.out.println("\n########## of Exams ########### "+examService.getAllExam().size()+"\n");
+		System.out.println("Available Processors : "+ Runtime.getRuntime().availableProcessors());
 		assertThat(examService.getAllExam()).isNotEmpty();
 	}
 }

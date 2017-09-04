@@ -1,5 +1,5 @@
 ## MCQ REST service 
-Developed with Spring Boot 1.3.5, [Spring 4.2.x, Hibernate 4.3.x] MySQL
+Developed with Spring Boot 1.5.6.RELEASE, [Spring 4.3.x, Hibernate 5.0.x], MariaDB
 
 ### Configurations
 

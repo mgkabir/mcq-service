@@ -25,17 +25,18 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public AppUser getUser(String userName, String password) {
-		System.out.println("UserDaoImpl.getUser() : userName = " + userName + " password = " + password);
+		/*System.out.println("UserDaoImpl.getUser() : userName = " + userName + " password = " + password);
 
 		AppUser retrivedUser = (AppUser) getSession()
 				.createQuery("FROM AppUser WHERE login.userName = :userName AND login.password = :password")
 				.setParameter("userName", userName).setParameter("password", password).uniqueResult();
 
-		return retrivedUser;
+		return retrivedUser;*/
+		return null;
 	}
 
 	private AppUser getUserByUsername(String userName) {
-		System.out.println("UserDaoImpl.getUser() : userName = " + userName);
+		System.out.println("UserDaoImpl.getUserByUsername() : userName = " + userName);
 
 		AppUser retrivedUser = (AppUser) getSession().createQuery("FROM AppUser WHERE login.userName = :userName ")
 				.setParameter("userName", userName).uniqueResult();

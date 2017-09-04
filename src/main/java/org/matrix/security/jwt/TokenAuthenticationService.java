@@ -13,7 +13,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 public class TokenAuthenticationService {
 
-	private long EXPIRATIONTIME = 1000 * 60 * 60 * 24 * 1; // 1 days
+	private long EXPIRATIONTIME = 1000 * 60 * 60 * 24 * 3; // 3 days
 	//private long EXPIRATIONTIME = 1000 * 60 * 30; // 30 mins
 	private String secret = "sshuush";
 	private String tokenPrefix = "Bearer";
@@ -26,13 +26,11 @@ public class TokenAuthenticationService {
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 
 		response.setHeader(headerString, tokenPrefix + " " + JWT);
-
 		response.setContentType("application/json");
-		// writes directly to body
+		// writes directly to response body
 		response.getWriter().write(this.JSONize(JWT));
 
-		System.out.println("TokenAuthenticationService.addAuthentication(): JWT => " + JWT);
-
+		System.out.println("TokenAuthenticationService.addAuthentication(): JWT ==>> " + JWT);
 	}
 
 	public Authentication getAuthentication(HttpServletRequest request) {
@@ -40,7 +38,7 @@ public class TokenAuthenticationService {
 		if (token != null) {
 			// parse the token.
 			String username = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-			System.out.println("TokenAuthenticationService.getAuthentication(): parsed username = " + username);
+			System.out.println("TokenAuthenticationService.getAuthentication(): parsed username : " + username);
 			if (username != null) // we managed to retrieve a user
 			{
 				return new AuthenticatedUser(username);

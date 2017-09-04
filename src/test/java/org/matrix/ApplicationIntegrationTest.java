@@ -24,7 +24,7 @@ public class ApplicationIntegrationTest {
 	@Test
 	public void test() {
 		ResponseEntity<Question> response = this.restTemplate.getForEntity("/practice-question", Question.class);
-		/* Both the statements below do the same thing */
+		// Both the statements below do the same thing 
 		Assertions.assertThat(response.getBody().getOptions().size()).isEqualTo(4);
 		Assert.assertEquals(4, response.getBody().getOptions().size());
 	}
