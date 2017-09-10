@@ -15,9 +15,10 @@ public class TokenAuthenticationService {
 
 	private long EXPIRATIONTIME = 1000 * 60 * 60 * 24 * 3; // 3 days
 	//private long EXPIRATIONTIME = 1000 * 60 * 30; // 30 mins
-	private String secret = "sshuush";
-	private String tokenPrefix = "Bearer";
-	private String headerString = "Authorization";
+	private String secret = "sshuush"; /* TODO : get it from configuration file*/
+	private static final String TOKEN_PREFIX = "Bearer";
+	private static final String HEADER_STR = "Authorization";
+	private static final String WHITE_SPACE = " "; 
 
 	public void addAuthentication(HttpServletResponse response, String username) throws IOException {
 		// We generate a token now.
@@ -25,20 +26,25 @@ public class TokenAuthenticationService {
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 
-		response.setHeader(headerString, tokenPrefix + " " + JWT);
+		response.setHeader(HEADER_STR, TOKEN_PREFIX + " " + JWT);
 		response.setContentType("application/json");
 		// writes directly to response body
-		response.getWriter().write(this.JSONize(JWT));
-
-		System.out.println("TokenAuthenticationService.addAuthentication(): JWT ==>> " + JWT);
-	}
+		response.getWriter().write(this.JSONize(JWT));	}
 
 	public Authentication getAuthentication(HttpServletRequest request) {
-		String token = request.getHeader(headerString);
+		String headerStringValue = request.getHeader(HEADER_STR);
+		if(headerStringValue == null) return null;
+
+		String token = null;
+		if(headerStringValue.contains(WHITE_SPACE)) {
+			token = headerStringValue.substring(headerStringValue.indexOf(WHITE_SPACE));
+		}else {
+			token = headerStringValue;
+		}
+
 		if (token != null) {
 			// parse the token.
 			String username = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-			System.out.println("TokenAuthenticationService.getAuthentication(): parsed username : " + username);
 			if (username != null) // we managed to retrieve a user
 			{
 				return new AuthenticatedUser(username);
